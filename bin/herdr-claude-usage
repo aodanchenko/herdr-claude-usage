@@ -363,11 +363,16 @@ draw() {
 }
 
 dashboard() {
+  local frame key seq
   while :; do
-    printf '\e[H\e[2J'
-    draw
-    printf '\n  \e[2mq close · any key refresh · auto 30s\e[0m\n'
-    read -r -s -t 30 -n 1 key 2>/dev/null && case "${key:-}" in q|Q|$'\e') break ;; esac
+    frame=$(draw; printf '\n  \e[2mq close · any key refresh · auto 30s\e[0m\n')
+    printf '\e[H%s\e[J' "$frame"
+    read -r -s -t 30 -n 1 key 2>/dev/null && case "${key:-}" in
+      q|Q) break ;;
+      # Arrow and function keys also start with \e; only a bare Esc closes.
+      # Integer timeout: bash 3.2 (macOS) rejects fractional ones.
+      $'\e') seq=""; read -r -s -t 1 -n 2 seq 2>/dev/null; [ -n "$seq" ] || break ;;
+    esac
   done
 }
 
