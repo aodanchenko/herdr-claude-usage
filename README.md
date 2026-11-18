@@ -53,25 +53,7 @@ Then `herdr server reload-config`.
 
 The tab bar updates on its own every 30s. `prefix+u` opens the dashboard:
 
-```text
-  ✳ Claude usage   12s ago · 8 session(s) · Europe/Prague
-
-  Session (5h)                ↻ 33m · 8pm
-  ████████████████████████░░░┊░░░░░░  71%
-
-  Week · all models     ↻ 1d22h · Thu 6pm
-  ███████████░░░░░░░░░░░░░░░░┊░░░░░░  33%
-
-  Week · Fable          ↻ 1d22h · Thu 6pm
-  ████████████░░░░░░░░░░░░░░░┊░░░░░░  38%
-
-  Extra usage                €260 of €300
-  █████████████████████████████░░░░░  87%
-
-  ◦ 5h 4% · wk 54% · other profile (1 session(s) · rover)
-
-  q close · any key refresh · auto 30s
-```
+<img src="docs/dashboard.svg" alt="The Claude usage popup over a Herdr pane" width="860">
 
 Bars are lavender below 50%, amber from 50%, red from 80%; the faint `┊` tick marks where red begins.
 
