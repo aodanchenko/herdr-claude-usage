@@ -43,7 +43,7 @@ key = "prefix+u"
 type = "popup"
 command = "bash /path/to/herdr-claude-usage/bin/herdr-claude-usage dashboard"
 width = 64
-height = 28
+height = 20
 ```
 
 Then `herdr server reload-config`.

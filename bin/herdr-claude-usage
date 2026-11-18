@@ -366,9 +366,12 @@ draw() {
 }
 
 dashboard() {
-  local frame key seq
+  local frame key seq rows
   while :; do
     frame=$(draw; printf '\n  \e[38;5;245mq close · any key refresh · auto 30s\e[0m\n')
+    # The popup has a fixed height; drop the spacer lines when the rows would not fit.
+    rows=$(tput lines 2>/dev/null || echo 999)
+    [ "$(printf '%s\n' "$frame" | wc -l)" -gt "$rows" ] && frame=$(printf '%s\n' "$frame" | awk 'NF || NR < 4')
     printf '\e[H%s\e[J' "$frame"
     read -r -s -t 30 -n 1 key 2>/dev/null && case "${key:-}" in
       q|Q) break ;;
@@ -411,7 +414,7 @@ herdr_config() {
     printf 'command = "bash '\''%s'\'' dashboard" # herdr-claude-usage\n' "$me"
     printf 'description = "Claude usage dashboard" # herdr-claude-usage\n'
     printf 'width = 64 # herdr-claude-usage\n'
-    printf 'height = 28 # herdr-claude-usage\n'
+    printf 'height = 20 # herdr-claude-usage\n'
   } > "$tmp.2" && mv "$tmp.2" "$cfg" && rm -f "$tmp"
   out=$("$HERDR" server reload-config 2>/dev/null)
   if [ -z "$out" ]; then
