@@ -249,7 +249,7 @@ fmt_pct() {
 # ---------- bar: one-line summary for the Herdr tab bar ----------
 # e.g.  ✳ 5h 24% ↻2am · wk 17% · Fable 13% · € 87%   (⁺ = another signed-in profile active)
 bar() {
-  fetch_api
+  ( fetch_api & ) 2>/dev/null
   local ranked primary others
   ranked=$(profiles_ranked)
   primary=$(primary_file "$ranked")
