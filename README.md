@@ -19,7 +19,7 @@ Global Claude Code plan usage inside [Herdr](https://herdr.dev), in one place, n
 Requirements: Herdr 0.8+, `bash`, `jq`, `curl`. macOS or Linux.
 
 ```sh
-herdr plugin install anyaachan/herdr-claude-usage
+herdr plugin install aodanchenko/herdr-claude-usage
 herdr plugin action invoke herdr-claude-usage.configure
 ```
 
