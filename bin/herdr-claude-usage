@@ -288,14 +288,14 @@ LINE_W=39   # bar + space + "100%"
 
 draw_one() { # key used epoch [right-text]
   local key="$1" used="$2" epoch="$3" right="${4:-}"
-  local dim=$'\e[2m' rst=$'\e[0m' bold=$'\e[1m'
+  local dim=$'\e[38;5;245m' rst=$'\e[0m' bold=$'\e[1m'
   local label color filled tick i cells pad
   label=$(label_for "$key")
   if [ -z "$right" ] && [ "$epoch" -gt 0 ] 2>/dev/null; then
     right="↻ $(rel_time "$epoch") · $(abs_time "$epoch")"
   fi
   if [ "$used" -ge "$BAR_HOT" ] 2>/dev/null; then color=$'\e[38;5;210m'
-  elif [ "$used" -ge "$BAR_WARN" ] 2>/dev/null; then color=$'\e[38;5;222m'
+  elif [ "$used" -ge "$BAR_WARN" ] 2>/dev/null; then color=$'\e[38;5;214m'
   else color=$'\e[38;5;147m'; fi
   filled=$(( used * BAR_W / 100 )); [ "$filled" -gt "$BAR_W" ] && filled=$BAR_W
   [ "$used" -gt 0 ] && [ "$filled" -eq 0 ] && filled=1
@@ -303,7 +303,7 @@ draw_one() { # key used epoch [right-text]
   tick=$(( BAR_W * BAR_HOT / 100 )); [ "$tick" -ge "$BAR_W" ] && tick=$((BAR_W - 1))
   cells=""
   for ((i = 0; i < BAR_W; i++)); do
-    if [ "$i" -lt "$filled" ]; then cells+="█"
+    if [ "$i" -lt "$filled" ]; then cells+="$([ "$i" -eq "$tick" ] && printf '▓' || printf '█')"
     elif [ "$i" -eq "$tick" ]; then cells+=$'\e[38;5;243m'"┊${color}"
     else cells+=$'\e[38;5;238m'"░${color}"; fi
   done
@@ -320,7 +320,7 @@ draw_bars() { # payload_file
 }
 
 draw() {
-  local dim=$'\e[2m' rst=$'\e[0m' bold=$'\e[1m'
+  local dim=$'\e[38;5;245m' rst=$'\e[0m' bold=$'\e[1m'
   local tz ranked primary nsess age agetxt
   tz=$(tz_name)
   fetch_api
@@ -368,7 +368,7 @@ draw() {
 dashboard() {
   local frame key seq
   while :; do
-    frame=$(draw; printf '\n  \e[2mq close · any key refresh · auto 30s\e[0m\n')
+    frame=$(draw; printf '\n  \e[38;5;245mq close · any key refresh · auto 30s\e[0m\n')
     printf '\e[H%s\e[J' "$frame"
     read -r -s -t 30 -n 1 key 2>/dev/null && case "${key:-}" in
       q|Q) break ;;
