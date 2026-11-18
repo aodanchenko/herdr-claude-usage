@@ -8,6 +8,9 @@
 # other consumers (e.g. herdr-agent-quota) keep working untouched.
 set -u
 
+# ${#var} counts bytes under a C locale, which misaligns the dashboard columns.
+case "${LC_ALL:-${LC_CTYPE:-${LANG:-}}}" in *UTF-8*|*utf8*) ;; *) export LC_ALL=C.UTF-8 ;; esac
+
 HERDR=${HERDR_BIN_PATH:-herdr}
 STATE_DIR=${HERDR_PLUGIN_STATE_DIR:-$HOME/.local/state/herdr/plugins/herdr-claude-usage}
 CONFIG_DIR=${HERDR_PLUGIN_CONFIG_DIR:-$HOME/.config/herdr/plugins/config/herdr-claude-usage}
