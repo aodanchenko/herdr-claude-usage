@@ -243,11 +243,11 @@ short_label() {
 BAR_HOT=${BAR_HOT:-80}
 BAR_WARN=${BAR_WARN:-50}
 fmt_pct() {
-  if [ "$1" -gt "$BAR_HOT" ] 2>/dev/null; then printf '%s%%!!' "$1"; else printf '%s%%' "$1"; fi
+  if [ "$1" -gt "$BAR_HOT" ] 2>/dev/null; then printf '%2d%%!!' "$1"; else printf '%2d%%' "$1"; fi
 }
 
 # ---------- bar: one-line summary for the Herdr tab bar ----------
-# e.g.  ✳ 5h 24% ↻2am · wk 17% · Fable 13% · € 87%   (⁺ = another signed-in profile active)
+# e.g.  ✳ 5h 24% ↻2am · wk 17% · Fable 13% · € 87%   (+ = another signed-in profile active)
 bar() {
   ( fetch_api & ) 2>/dev/null
   local ranked primary others
@@ -278,7 +278,7 @@ bar() {
   [ "${#parts[@]}" -gt 0 ] || { printf '✳ Claude —'; exit 0; }
   local out="✳ ${parts[0]}" i
   for ((i = 1; i < ${#parts[@]}; i++)); do out+=" · ${parts[$i]}"; done
-  [ "$others" -gt 1 ] 2>/dev/null && out="$out ⁺"
+  [ "$others" -gt 1 ] 2>/dev/null && out="$out +"
   printf '%s' "$out"
 }
 

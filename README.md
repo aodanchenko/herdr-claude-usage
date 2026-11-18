@@ -8,7 +8,7 @@ Global Claude Code plan usage inside [Herdr](https://herdr.dev), in one place, n
 
 ## Features
 
-- **Tab-bar summary**, always visible: session window with its reset hour, week, per-model weekly windows, monthly extra-usage credits. A percentage above 80 gets a `!!` suffix; a trailing `⁺` means another signed-in profile is also active.
+- **Tab-bar summary**, always visible: session window with its reset hour, week, per-model weekly windows, monthly extra-usage credits. A percentage above 80 gets a `!!` suffix; a trailing `+` means another signed-in profile is also active.
 - **Popup dashboard** on a keybinding: severity-colored bars with a threshold tick, reset countdowns (`↻ 33m · 8pm`), extra-usage spend with amounts, active session count, one compact line per other signed-in profile. Any key refreshes, auto every 30s, `q` or `Esc` closes.
 - **Multi-account aware**: payloads are clustered into per-account profiles; the logged-in account is primary, others stay visible without hijacking the display.
 - **No credentials required** for the core data; an optional macOS-only usage-API fetch adds per-model windows and spend.
