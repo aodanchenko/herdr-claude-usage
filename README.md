@@ -1,8 +1,16 @@
+<div align="center">
+
 # herdr-claude-usage
 
-Global Claude Code plan usage inside [Herdr](https://herdr.dev), in one place, not per pane.
+**Global Claude Code plan usage inside [Herdr](https://herdr.dev), in one place, not per pane.**
 
-![Claude usage entry at the right of the Herdr tab bar](docs/tab-bar.svg)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Linux-lightgrey.svg)
+![Herdr](https://img.shields.io/badge/herdr-0.8%2B-8b7cf6.svg)
+
+<img src="docs/tab-bar.svg" alt="Claude usage entry at the right of the Herdr tab bar" width="860">
+
+</div>
 
 ## Features
 
