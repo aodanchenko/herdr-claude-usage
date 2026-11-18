@@ -2,9 +2,7 @@
 
 Global Claude Code plan usage inside [Herdr](https://herdr.dev), in one place, not per pane.
 
-```text
-✳ 5h 62% ↻8pm · wk 32% · Fable 34% · € 0%
-```
+![Claude usage entry at the right of the Herdr tab bar](docs/tab-bar.svg)
 
 ## Features
 
