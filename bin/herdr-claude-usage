@@ -73,8 +73,8 @@ profiles_ranked() {
   for f in "$STATE_DIR"/profiles/*.json; do
     [ -f "$f" ] || continue
     mtime=$(stat -f %m "$f" 2>/dev/null || stat -c %Y "$f")
-    [ "$mtime" -ge "$cutoff" ] || continue
     s="${f%.json}.sessions"
+    [ "$mtime" -ge "$cutoff" ] || { [ "$mtime" -lt $((now - 14 * 86400)) ] && rm -f "$f" "$s"; continue; }
     n=0; names=""
     if [ -f "$s" ]; then
       n=$(awk -F'\t' -v c="$cutoff" '$2 >= c' "$s" | wc -l | tr -d ' ')
